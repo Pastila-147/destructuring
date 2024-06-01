@@ -1,6 +1,15 @@
-// TODO: write your code here
-import sum from './basic';
+export default function propertiesOrder (obj, keys) {
 
-console.log('worked');
+  const objectByKeys = [];
+  const sortedObject = [];
 
-console.log(sum([1, 2]));
+  for (const property in obj) {
+    if (keys.includes(property)) {
+      objectByKeys.push({ key: property, value: obj[property] });
+    } else {
+      sortedObject.push({ key: property, value: obj[property] });
+    }
+  }
+  sortedObject.sort((a, b) => (a.key < b.key ? -1 : 1));
+  return [...objectByKeys, ...sortedObject];
+}
